@@ -3,6 +3,7 @@ for (var i = 0; i<document.querySelectorAll(".drum").length;i++){
 document.querySelectorAll("button")[i].addEventListener("mousedown", function(){
 var buttonName =  this.innerHTML;
 console.log(buttonName);
+buttonPressed(buttonName);
 switch (buttonName) {
   case "w":
   var audio = new Audio('sounds/crash.mp3');
@@ -47,6 +48,7 @@ switch (buttonName) {
 
 document.addEventListener("keypress",function(event){
   console.log(event.key);
+  buttonPressed(event.key);
   switch (event.key) {
     case "w":
     var audio = new Audio('sounds/crash.mp3');
@@ -87,3 +89,13 @@ document.addEventListener("keypress",function(event){
 
   }
 });
+
+function buttonPressed(currentKey){
+  var animated = document.querySelector("." + currentKey);
+  animated.classList.add("pressed");
+
+  setTimeout(function (){
+    animated.classList.remove("pressed");
+  },100);
+
+}
